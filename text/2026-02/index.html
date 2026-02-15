@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试文章 | 知识库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #0f0f1a url('/pin/pin.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(25, 25, 40, 0.7);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9a8aff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background: rgba(154, 138, 255, 0.2);
+            transform: translateX(-3px);
+            box-shadow: 0 5px 15px rgba(154, 138, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(25, 25, 40, 0.65);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(110, 228, 124, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, #6ee47c, #4a9e5f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .article-meta {
+            color: #aaa;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .article-content {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .article-content h2 {
+            color: #c2f0c8;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(110, 228, 124, 0.2);
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content code {
+            background: rgba(110, 228, 124, 0.1);
+            color: #6ee47c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(110, 228, 124, 0.1);
+            color: #6ee47c;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <a href="/index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> 返回主页面
+            </a>
+        </div>
+
+        <div class="glass-card">
+            <header class="article-header">
+                <h1 class="article-title">测试文章：前端构建工具概述</h1>
+                <div class="article-meta">
+                    <div class="meta-item">
+                        <i class="far fa-calendar"></i> 2024-03-15
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-clock"></i> 阅读时间：3分钟
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-folder"></i> 前端开发
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-content">
+                <p>这是一篇测试文章，用于展示文章页面的基本布局和样式。</p>
+                
+                <h2>构建工具的作用</h2>
+                <p>现代前端开发中，构建工具扮演着关键角色。它们的主要功能包括代码转换、模块打包、资源优化等。</p>
+                
+                <p>常用的构建工具有 <code>Webpack</code>、<code>Vite</code>、<code>Rollup</code> 等。每个工具都有其特色和适用场景。</p>
+                
+                <h2>工具选择建议</h2>
+                <p>选择构建工具时，需要考虑项目规模、团队技术栈、性能需求等因素。</p>
+                
+                <p>对于小型项目，<code>Vite</code> 提供了极快的开发体验。对于大型企业级应用，<code>Webpack</code> 的生态系统更为成熟。</p>
+            </div>
+
+            <footer class="article-footer">
+                <p>以上为AI生成，我懒得改了，反正是测试用的</p>
+                <div class="article-tags">
+                    <span class="tag">前端</span>
+                    <span class="tag">构建工具</span>
+                    <span class="tag">测试</span>
+                </div>
+            </footer>
+        </div>
+
+        <div class="glass-card">
+            <h3 style="color: #c2f0c8; margin-bottom: 15px;">相关测试文章</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 10px; padding: 10px; background: rgba(40, 40, 60, 0.5); border-radius: 8px;">
+                    <a href="/text/2024-02/index.html" style="color: #9a8aff; text-decoration: none;">
+                        <i class="fas fa-file-alt"></i> 测试文章：React Hooks 使用指南
+                    </a>
+                </li>
+                <li style="margin-bottom: 10px; padding: 10px; background: rgba(40, 40, 60, 0.5); border-radius: 8px;">
+                    <a href="/text/2024-01/index.html" style="color: #9a8aff; text-decoration: none;">
+                        <i class="fas fa-file-alt"></i> 测试文章：CSS Grid 布局实践
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backButton = document.querySelector('.back-button');
+            const articleTags = document.querySelectorAll('.tag');
+            
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    console.log('导航回主页面');
+                });
+            }
+            
+            articleTags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const tagText = this.textContent;
+                    console.log(`点击标签: ${tagText}`);
+                });
+            });
+            
+            const relatedLinks = document.querySelectorAll('a[href^="/text/"]');
+            relatedLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.getAttribute('href').includes('2024-03')) {
+                        console.log(`导航到文章: ${this.textContent.trim()}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

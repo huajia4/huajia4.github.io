@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识库主页 | 暗色毛玻璃质感</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #0f0f1a url('/pin/pin.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            gap: 25px;
+            grid-template-areas:
+                "header header"
+                "intro board"
+                "articles articles";
+        }
+
+        .glass-card {
+            background: rgba(25, 25, 40, 0.65);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 页头 */
+        .page-header {
+            grid-area: header;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .page-header h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(90deg, #7c6ee4, #9a8aff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 作者介绍与网页介绍 */
+        .intro-section {
+            grid-area: intro;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .author-card h2,
+        .web-intro-card h2 {
+            color: #9a8aff;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(154, 138, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-card h2 i {
+            color: #7c6ee4;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c6ee4, #4a3f9e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-details h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .author-details .title {
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .author-details p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .web-intro-card p {
+            line-height: 1.7;
+            color: #ccc;
+        }
+
+        /* 重大公告 */
+        .board-section {
+            grid-area: board;
+        }
+
+        .board-card h2 {
+            color: #ff8a8a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 138, 138, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .board-content {
+            padding: 20px;
+            background: rgba(255, 138, 138, 0.07);
+            border-radius: 15px;
+            border-left: 5px solid #ff8a8a;
+        }
+
+        .board-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .board-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #ff8a8a, #ff5252);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .board-link:hover {
+            background: linear-gradient(90deg, #ff5252, #ff8a8a);
+            box-shadow: 0 5px 15px rgba(255, 82, 82, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* 文章导航 */
+        .articles-section {
+            grid-area: articles;
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .articles-header h2 {
+            color: #6ee47c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-count-badge {
+            background: rgba(110, 228, 124, 0.15);
+            color: #6ee47c;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .article-card {
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(110, 228, 124, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            background: rgba(50, 50, 70, 0.9);
+            border-color: rgba(110, 228, 124, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .article-card h3 {
+            color: #c2f0c8;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "intro"
+                    "board"
+                    "articles";
+            }
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .glass-card {
+                padding: 20px;
+            }
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 页头 -->
+        <header class="glass-card page-header">
+            <h1><i class="fas fa-gem"></i> 服务器官网</h1>
+            <p>这里是某不明我的世界服务器的官网</p>
+        </header>
+
+        <!-- 作者介绍与网页介绍区域 -->
+        <section class="intro-section">
+            <div class="glass-card author-card">
+                <h2><i class="fas fa-user-astronaut"></i> 关于作者</h2>
+                <div class="author-info">
+                    <div class="avatar">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="author-details">
+                        <h3>周？？</h3>
+                        <div class="title">服主 兼 苦逼技术员和运维</div>
+                        <p>我是啥子</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card web-intro-card">
+                <h2><i class="fas fa-globe"></i> 关于本站</h2>
+                <p>本站用来发布服务器信息</p>
+                <p>感觉没人会看</p>
+            </div>
+        </section>
+
+        <!-- 重大公告区域 -->
+        <section class="board-section">
+            <div class="glass-card board-card">
+                <h2><i class="fas fa-bullhorn"></i> 重大公告</h2>
+                <div class="board-content">
+                    <p><strong>3月10号停服</strong> 没钱一直开，寒假过后等暑假再开</p>
+                    <p>谁来给我钱啊</p>
+                    <a href="/bord/index.html" class="board-link">
+                        <i class="fas fa-external-link-alt"></i> 前往公告板查看更多
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 文章导航区域 -->
+        <section class="articles-section">
+            <div class="glass-card">
+                <div class="articles-header">
+                    <h2><i class="fas fa-book-open"></i> 服务器新闻导航</h2>
+                    <div class="article-count-badge" id="articleCount">加载中...</div>
+                </div>
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- 文章卡片将由JavaScript动态生成 -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 模拟文章数据 - 在实际应用中，这部分数据应由服务器API动态返回
+        // 此处模拟了1篇文章，对应1个时间目录
+        const mockArticles = [
+            {
+                id: 1,
+                title: "测试文章",
+                abstract: "何意味",
+                timeDir: "2026-02", // 对应 /text/2026-02/index.html
+                publishDate: "2026-02-15",
+                readTime: "12 min"
+            },
+            
+        ];
+
+        // 页面加载完成后，动态渲染文章导航
+        document.addEventListener('DOMContentLoaded', function() {
+            const articlesGrid = document.getElementById('articlesGrid');
+            const articleCountBadge = document.getElementById('articleCount');
+
+            // 1. 更新文章数量
+            articleCountBadge.textContent = `共 ${mockArticles.length} 篇文章`;
+
+            // 2. 清空容器（防止重复）
+            articlesGrid.innerHTML = '';
+
+            // 3. 遍历文章数据，动态生成卡片
+            mockArticles.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card';
+                // 设置点击事件，跳转到对应的文章页面
+                articleCard.onclick = () => {
+                    window.location.href = `/text/${article.timeDir}/index.html`;
+                };
+
+                articleCard.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${article.abstract}</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> ${article.publishDate}</span>
+                        <span><i class="far fa-clock"></i> ${article.readTime}</span>
+                    </div>
+                `;
+
+                articlesGrid.appendChild(articleCard);
+            });
+
+            // 4. 如果文章数量为0，显示提示信息
+            if (mockArticles.length === 0) {
+                articlesGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #888;">
+                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>暂无文章</h3>
+                        <p>内容正在筹备中，敬请期待。</p>
+                    </div>
+                `;
+            }
+        });
+
+        // 为公告板链接添加一个简单的点击动画反馈
+        const boardLink = document.querySelector('.board-link');
+        if(boardLink) {
+            boardLink.addEventListener('click', function(e) {
+                // 此处是链接正常跳转，无需阻止默认行为
+                // 可以添加一些加载指示器（如果需要）
+                console.log('正在跳转到公告板...');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告测试页面 | 服务器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #0f0f1a url('/pin/pin.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(25, 25, 40, 0.7);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9a8aff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(154, 138, 255, 0.2);
+            transform: translateX(-3px);
+            box-shadow: 0 5px 15px rgba(154, 138, 255, 0.3);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #ff8a8a, #ff5252);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(25, 25, 40, 0.65);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .announcement-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .announcement-item {
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 4px solid #ff8a8a;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-item:hover {
+            background: rgba(50, 50, 70, 0.9);
+            border-left-width: 6px;
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .announcement-title {
+            font-size: 1.3rem;
+            color: #ffc2c2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .announcement-date {
+            background: rgba(255, 138, 138, 0.15);
+            color: #ff8a8a;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .announcement-content {
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .announcement-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
+
+        .status-new {
+            background: rgba(255, 82, 82, 0.2);
+            color: #ff5252;
+        }
+
+        .status-updated {
+            background: rgba(110, 228, 124, 0.2);
+            color: #6ee47c;
+        }
+
+        .page-info {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .glass-card {
+                padding: 20px;
+            }
+            
+            .announcement-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <a href="/index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> 返回主页面
+            </a>
+            <h1 class="page-title">公告测试页面</h1>
+        </div>
+
+        <div class="glass-card">
+            <div class="announcement-list">
+                <div class="announcement-item">
+                    <div class="announcement-header">
+                        <h2 class="announcement-title">
+                            <i class="fas fa-exclamation-circle"></i> 神秘通知
+                            <span class="status-indicator status-new">NEW</span>
+                        </h2>
+                        <div class="announcement-date">2026-02-15</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>我是你爹，我是你爹，我是你爹</p>
+                        <p>我是谁呀</p>
+                    </div>
+                    <div class="announcement-tags">
+                        <span class="tag">系统通知</span>
+                        <span class="tag">？？</span>
+                        <span class="tag">重要</span>
+                    </div>
+                </div>
+
+                <div class="announcement-item">
+                    <div class="announcement-header">
+                        <h2 class="announcement-title">
+                            <i class="fas fa-rocket"></i> ？？？？
+                            <span class="status-indicator status-updated">UPDATED</span>
+                        </h2>
+                        <div class="announcement-date">2026-02-10</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？</p>
+                        <p>？？？？？？？？？？？？？？？？？？？？？？？？？？？？</p>
+                    </div>
+                    <div class="announcement-tags">
+                        <span class="tag">？？</span>
+                        <span class="tag">？？</span>
+                        <span class="tag">？？</span>
+                    </div>
+                </div>
+
+                <div class="announcement-item">
+                    <div class="announcement-header">
+                        <h2 class="announcement-title">
+                            <i class="fas fa-calendar-alt"></i> 饿啊
+                        </h2>
+                        <div class="announcement-date">2026-01-28</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>饿啊</p>
+                        <p>饿啊</p>
+                    </div>
+                    <div class="announcement-tags">
+                        <span class="tag">计划</span>
+                        <span class="tag">公告</span>
+                        <span class="tag">2026</span>
+                    </div>
+                </div>
+
+                <div class="announcement-item">
+                    <div class="announcement-header">
+                        <h2 class="announcement-title">
+                            <i class="fas fa-code"></i> 过年不看春晚看什么
+                        </h2>
+                        <div class="announcement-date">2026-01-20</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>我要看《超时空辉夜姬》我要看《超时空辉夜姬》我要看《超时空辉夜姬》我要看《超时空辉夜姬》我要看《超时空辉夜姬》</p>
+                        <p>都给我去看《超时空辉夜姬》</p>
+                    </div>
+                    <div class="announcement-tags">
+                        <span class="tag">神秘</span>
+                        <span class="tag">神金</span>
+                        <span class="tag">何意味</span>
+                    </div>
+                </div>
+
+                <div class="announcement-item">
+                    <div class="announcement-header">
+                        <h2 class="announcement-title">
+                            <i class="fas fa-users"></i> 傻逼功能上线
+                        </h2>
+                        <div class="announcement-date">2026-01-15</div>
+                    </div>
+                    <div class="announcement-content">
+                        <p>神马都没有</p>
+                        <p>神马都没有</p>
+                    </div>
+                    <div class="announcement-tags">
+                        <span class="tag">社区</span>
+                        <span class="tag">新功能</span>
+                        <span class="tag">互动</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-info">
+            <p>当前显示5条公告 | 最后更新：2026-02-15 10:30:00</p>
+            <p>© 2026 . 本页为公告测试页面，用于展示公告系统的功能实现。</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const announcementItems = document.querySelectorAll('.announcement-item');
+            const backButton = document.querySelector('.back-button');
+            
+            announcementItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (!e.target.closest('a')) {
+                        this.style.transform = 'scale(0.99)';
+                        this.style.opacity = '0.9';
+                        
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.opacity = '';
+                        }, 200);
+                    }
+                });
+            });
+            
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    console.log('导航回主页面');
+                });
+            }
+            
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const tagText = this.textContent;
+                    alert(`筛选标签: ${tagText} (测试功能)`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
